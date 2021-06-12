@@ -1,0 +1,117 @@
+using System;
+namespace ConsoleApp1
+{
+ class Program
+ {
+   static void Main(string[] args)
+   {
+     // Способи створення екземпляру типу string
+     // 1. Створення та ініціалізація рядка при його оголошенні
+     string s1 = &quot;Hello&quot;;
+     Console.WriteLine(&quot;s1 = {0}&quot;, s1);
+
+
+Створення рядка з масиву типу char[]
+     char[] ArrayChar = { &#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39; };
+     string s2 = new string(ArrayChar);
+     Console.WriteLine(&quot;s2 = {0}&quot;, s2);
+     string s3 = new string(ArrayChar, 2, 3); // отримати частину рядка
+     Console.WriteLine(&quot;s3 = {0}&quot;, s3);
+     // 3. Створення рядка з допомогою перевантаженого оператора присвоєння =
+     string s4;
+     s4 = &quot;Hello&quot;;
+     Console.WriteLine(&quot;s4 = {0}&quot;, s4);
+     // 4. Створення рядка з одного символу
+     string s5 = new string(&#39;+&#39;, 10); // символ &#39;+&#39; - 10 разів
+     Console.WriteLine(&quot;s5 = {0}&quot;, s5);
+     // 5. Буквальні рядки (verbatim strings)
+     string s6;
+     s6 = @&quot;C:\Programs\abc.txt&quot;; // це є буквальний рядок, перед рядком стоїть
+@
+     Console.WriteLine(&quot;s6 = {0}&quot;, s6);          
+     Console.ReadKey();
+   }
+ }
+}
+
+
+string text1 = null; //рядок без значення
+string text2 = &quot;&quot;; //пустий рядок
+string text3 = &quot;Some text&quot;;
+string text4 = new string(&#39;x&#39;, 4); //xxxx
+string text5 = new string(new[] { &#39;M&#39;, &#39;e&#39;, &#39;s&#39;, &#39;s&#39;, &#39;a&#39;, &#39;g&#39;,
+&#39;e&#39; }); //Message
+
+
+var empty1 = &quot;&quot;;
+var empty2 = string.Empty;
+
+string nullString = null;
+var b1 = string.IsNullOrEmpty(nullString); //true
+var b2 = string.IsNullOrEmpty(&quot;test&quot;); // false
+
+string whiteString = &quot;\t \r\n&quot;;
+var b1 = string.IsNullOrWhiteSpace(whiteString); //true
+var b2 = string.IsNullOrWhiteSpace(&quot;123&quot;); // false
+
+string h = &quot;Hello&quot;;
+string w = &quot;World&quot;;
+
+h += &quot; &quot;; //додаємо пробіл
+w = w + &quot;!&quot;; //склеюємо зі знаком оклику
+Console.WriteLine(string.Concat(h, w)); //склеює два рядки
+
+//перший аргумент - символ розділювача
+var t1 = string.Join(&quot;,&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;); //1,2,3
+//цілочисельний масив перетворюється в текст
+var t2 = string.Join(&quot;; &quot;, new[] { 7, 8, 9 }); //7; 8; 9
+
+var t = &quot;Abdc&quot;;
+var lower = t.ToLower(); //abcd
+var upper = t.ToUpper(); //ABCD
+
+var b1 = &quot;abc&quot; == &quot;abc&quot;; //true
+var b2 = &quot;bcd&quot; != &quot;Bcd&quot;; //true
+var b3 = &quot;x&quot;.Equals(&quot;c&quot;); //false
+
+string s = &quot; 1 Test &quot;;
+var trim = s.Trim(); // &quot;1 Test&quot;
+var start = s.TrimStart(); // &quot;1 Test &quot;
+var end = s.TrimEnd(); // &quot; 1 Test&quot;
+var custom = s.Trim(&#39; &#39;, &#39;t&#39;); // &quot;1 Tes&quot;
+
+string[] nums = new[] { &quot;10&quot;, &quot;1023&quot;, &quot;2&quot; };
+//виводимо числа з вирівнюванням по правому краю
+for (int i = 0; i &lt; nums.Length; i++)
+{
+Console.WriteLine(nums[i].PadLeft(4));
+}
+// Результат
+// 10
+//1023
+// 2
+//додавання не значущих нулів до двійкових чисел
+string[] binNums = new[] {&quot;101&quot;, &quot;111010&quot;, &quot;11001&quot;};
+for (int i = 0; i &lt; binNums.Length; i++)
+{
+Console.WriteLine(binNums[i].PadLeft(8, &#39;0&#39;));
+}
+//00000101
+//00111010
+//00011001
+//доповнення справа
+string tree = &quot;|&quot;;
+for (int i = 1; i &lt; 6; i++)
+Console.WriteLine(tree.PadRight(i, &#39;*&#39;));
+
+// string =&gt; int
+string s = &quot;389&quot;;
+int i;
+i = int.Parse(s);
+i = int.Parse(&quot;-29&quot;); // i = -29
+
+// int =&gt; string
+string s;
+int i;
+i = 230;
+s = i.ToString(); // s = &quot;230&quot;

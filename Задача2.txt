@@ -1,0 +1,31 @@
+using System;
+
+class Program
+{
+    static string CapitalizeString(string s)
+    {
+        //разбиваем на слова
+        var parts = s.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < parts.Length; i++)
+        {
+            //получаем заглавную букву
+            var firstLetter = parts[i].Substring(0, 1).ToUpper();
+            //сцепляем с остатком от слова
+            parts[i] = firstLetter + parts[i].Remove(0, 1);
+        }
+
+        //конкатенируем массив строк
+        return string.Join(" ", parts);
+    }
+
+    static void Main(string[] args)
+    {
+        Console.Write("Введите строку для преобразования: ");
+        var s = Console.ReadLine();
+
+        var result = CapitalizeString(s);
+        Console.WriteLine($"Результат: {result}");
+
+        Console.ReadLine();
+    }
+}
